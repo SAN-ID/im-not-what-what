@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Full Screen</title>
+    <style>
+        /* CSS untuk memastikan video memenuhi seluruh layar */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Sembunyikan scrollbar jika ada */
+            background-color: black;
+            height: 100vh;
+        }
+        #fullScreenVideo {
+            width: 100vw;   /* Lebar 100% dari viewport */
+            height: 100vh;  /* Tinggi 100% dari viewport */
+            object-fit: cover; /* Memastikan video menutupi area tanpa terdistorsi */
+            position: fixed; /* Memastikan video tetap di tempatnya */
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <video id="fullScreenVideo" autoplay loop muted playsinline>
+        <source src="1004124603.mp4" type="video/mp4">
+        Browser Anda tidak mendukung tag video.
+    </video>
+
+    <script>
+        // Mengambil elemen video
+        const videoElement = document.getElementById('fullScreenVideo');
+
+        // Menghilangkan atribut 'muted' untuk mengaktifkan suara
+        // Ini adalah upaya terbaik, tetapi browser mungkin masih memerlukan interaksi pengguna
+        // untuk mengaktifkan audio karena kebijakan autoplay.
+        videoElement.muted = false;
+
+        // Coba putar ulang untuk memastikan suara aktif
+        videoElement.play().catch(error => {
+            console.warn('Autoplay dengan suara mungkin diblokir. Pengguna perlu berinteraksi (klik/tap) untuk mengaktifkan audio.');
+        });
+    </script>
+
+</body>
+</html>
